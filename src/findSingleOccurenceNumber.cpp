@@ -15,6 +15,36 @@ There are better ways of solving the problem than a brute-force solution which i
 complexity .
 */
 
-int findSingleOccurenceNumber(int *A, int len) {
-	return -1;
+int findSingleOccurenceNumber(int *A, int len) 
+{
+	if (A == 0)
+	{
+		return -1;
+	}
+	int i, t, min;
+	for (i = 0; i < len; i++)
+	{
+		min = A[i];
+		for (int j = i + 1; j < len; j++)
+		{
+			if (A[i]>A[j])
+			{
+				t = A[i];
+				A[i] = A[j];
+				A[j] = t;
+			}
+		}
+	}
+	for (i = 0; i < len; i += 3)
+	{
+		if (A[i] != A[i + 1])
+		{
+			return A[i];
+		}
+	}
+
+
 }
+
+
+
