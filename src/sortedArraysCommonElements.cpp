@@ -23,7 +23,96 @@ struct transaction {
 	char date[11];
 	char description[20];
 };
-
+int isolder(char *dob1, char *dob2);
 struct transaction * sortedArraysCommonElements(struct transaction *A, int ALen, struct transaction *B, int BLen) {
+	if (((A != NULL) || (B != NULL)) && ((A != NULL) && (B != NULL)))
+	{
+		struct transaction *res = (struct transaction*)malloc(sizeof(struct transaction) * 3);
+		int k = 0, r, P = 0;
+		for (int i = 0; i < ALen; i++)
+		{
+			for (int j = 0; j < BLen; j++)
+			{
+				r = isolder(A[i].date, B[j].date);
+				if (r == 0)
+				{
+					P++;
+					res[k] = A[i];
+					k++;
+				}
+				else if (r == 1)
+				{
+					break;
+
+				}
+			}
+
+		}
+		if (P == 0)
+		{
+			return NULL;
+		}
+		return res;
+	}
 	return NULL;
 }
+
+
+
+
+
+
+int isolder(char *dob1, char *dob2) {
+	int i;
+	for (i = 6; i <= 9; i++)
+	{
+		if (dob1[i] == dob2[i])
+		{
+
+		}
+		else if (dob1[i] < dob2[i])
+		{
+			return 1;
+		}
+		else if (dob1[i] > dob2[i])
+		{
+			return 2;
+		}
+	}
+	for (i = 3; i < 5; i++)
+
+	{
+
+		if (dob1[i] == dob2[i])
+		{
+
+		}
+		else if (dob1[i] < dob2[i])
+		{
+			return 1;
+		}
+		else if (dob1[i] > dob2[i])
+		{
+			return 2;
+		}
+
+	}
+	for (i = 0; i < 2; i++)
+
+	{
+		if (dob1[i] == dob2[i])
+		{
+		}
+		else if (dob1[i] < dob2[i])
+		{
+			return 1;
+		}
+		else if (dob1[i] > dob2[i])
+		{
+			return 2;
+		}
+	}
+
+	return 0;
+}
+
